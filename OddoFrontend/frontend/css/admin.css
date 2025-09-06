@@ -1,0 +1,47 @@
+/* css/admin.css */
+.product-list-container {
+margin-top: 20px;
+}
+.product-admin-card {
+display: flex;
+align-items: center;
+background-color: #fff;
+border: 1px solid var(--border-color);
+border-radius: 8px;
+padding: 15px;
+margin-bottom: 15px;
+box-shadow: var(--shadow);
+gap: 20px; /* Adds space between items */
+}
+.product-admin-image {
+width: 100px;
+height: 100px;
+object-fit: cover;
+border-radius: 4px;
+flex-shrink: 0; /* Prevents image from shrinking */
+}
+.product-admin-details {
+flex-grow: 1; /* Takes up the available space */
+}
+.product-admin-title {
+font-size: 1.2em;
+font-weight: 600;
+margin: 0 0 5px 0;
+}
+.product-admin-category, .product-admin-price {
+color: var(--dark-grey);
+margin: 5px 0;
+}
+.product-admin-actions .delete-btn {
+background-color: #dc3545; /* Red for delete */
+color: white;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+cursor: pointer;
+font-weight: 500;
+transition: background-color 0.3s ease;
+}
+.product-admin-actions .delete-btn:hover {
+background-color: #c82333; /* Darker red on hover */
+}

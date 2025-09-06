@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoFinds - Login/Sign Up</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Note: The image path might need to be "images/log.jpg" if login.html is in the root -->
+        <img src="images/log.jpg" alt="EcoFinds Logo" class="app-logo">
+        <h1>Welcome to EcoFinds</h1>
+        
+        <form id="loginForm" class="auth-form">
+            <div class="input-group">
+                <label for="loginIdentifier">Username or Email:</label>
+                <input type="text" id="loginIdentifier" placeholder="e.g., admin or your@example.com" required>
+            </div>
+            <div class="input-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" placeholder="********" required>
+            </div>
+            <button type="submit" class="btn primary-btn">Login</button>
+        </form>
+
+        <p class="switch-auth">Don't have an account? <a href="#" id="showSignUp">Sign Up</a></p>
+
+        <form id="signUpForm" class="auth-form hidden">
+            <div class="input-group">
+                <label for="signUpUsername">Username:</label>
+                <input type="text" id="signUpUsername" placeholder="Choose a username" required>
+            </div>
+            <div class="input-group">
+                <label for="signUpEmail">Email:</label>
+                <input type="email" id="signUpEmail" placeholder="your@example.com" required>
+            </div>
+            <div class="input-group">
+                <label for="signUpPassword">Password:</label>
+                <input type="password" id="signUpPassword" placeholder="********" required>
+            </div>
+            <button type="submit" class="btn primary-btn">Sign Up</button>
+        </form>
+        
+        <p class="switch-auth hidden" id="showLoginLink">Already have an account? <a href="#" id="showLogin">Login</a></p>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

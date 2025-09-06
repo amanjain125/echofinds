@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dummy Page</title>
+    
+    <!-- ALL STYLES ARE EMBEDDED HERE FOR SIMPLICITY -->
+    <style>
+        /* Basic styles from style.css */
+        :root {
+            --primary-color: #007bff;
+            --text-color: #333;
+            --light-grey: #f8f9fa;
+            --border-color: #dee2e6;
+            --shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            background-color: var(--light-grey);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 15px;
+        }
+        .header {
+            background-color: #fff;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: var(--shadow);
+        }
+        .header .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            gap: 8px;
+        }
+        .app-logo-header {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+        }
+        .header-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .header-nav .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .section-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        .section-header h2 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        /* Styles from admin.css */
+        .product-list-container {
+            margin-top: 20px;
+        }
+        .product-admin-card {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            gap: 20px;
+        }
+        .product-admin-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .product-admin-details {
+            flex-grow: 1;
+        }
+        .product-admin-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 0 0 5px 0;
+        }
+        .product-admin-category, .product-admin-price {
+            color: #6c757d;
+            margin: 5px 0;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <a href="#" class="logo">
+                <img src="https://placehold.co/100x100/007bff/white?text=Logo" alt="EcoFinds Logo" class="app-logo-header">
+                <span>EcoFinds Admin</span>
+            </a>
+        </div>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="./index.html" class="nav-link">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="section-header">
+                <h2>Welcome, Admin! Your Listed Products</h2>
+            </div>
+            <!-- This container will be filled with products by the script below -->
+            <div id="productListContainer" class="product-list-container">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ALL JAVASCRIPT IS EMBEDDED HERE -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const productContainer = document.getElementById('productListContainer');
+
+        // --- DUMMY PRODUCT DATA ---
+        // In the real version, this comes from localStorage. Here, it's defined directly.
+        let products = [
+            {
+                id: 1,
+                title: 'Vintage Leather Jacket',
+                category: 'Fashion',
+                price: '75.00',
+                image: 'https://placehold.co/400x400/8B4513/white?text=Jacket'
+            },
+            {
+                id: 2,
+                title: 'Wireless Noise-Cancelling Headphones',
+                category: 'Electronics',
+                price: '120.50',
+                image: 'https://placehold.co/400x400/333333/white?text=Headphones'
+            },
+            {
+                id: 3,
+                title: 'Classic Hardcover Novel Set',
+                category: 'Books',
+                price: '45.99',
+                image: 'https://placehold.co/400x400/4682B4/white?text=Books'
+            },
+            {
+                id: 4,
+                title: 'Professional Grade Soccer Ball',
+                category: 'Sports',
+                price: '25.00',
+                image: 'https://placehold.co/400x400/008000/white?text=Soccer+Ball'
+            }
+        ];
+
+        // --- Function to display all products on the page ---
+        function renderProducts() {
+            productContainer.innerHTML = '';
+
+            if (products.length === 0) {
+                productContainer.innerHTML = '<p>All products have been deleted.</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-admin-card';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}" class="product-admin-image">
+                    <div class="product-admin-details">
+                        <h3 class="product-admin-title">${product.title}</h3>
+                        <p class="product-admin-category">Category: ${product.category}</p>
+                        <p class="product-admin-price">Price: $${product.price}</p>
+                    </div>
+                    <div class="product-admin-actions">
+                        <button class="delete-btn" data-id="${product.id}">Delete</button>
+                    </div>
+                `;
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        // --- Event listener to handle delete clicks ---
+        productContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('delete-btn')) {
+                const productIdToDelete = parseInt(e.target.dataset.id);
+
+                if (confirm('Are you sure you want to delete this product?')) {
+                    // Filter out the deleted product from the array
+                    products = products.filter(product => product.id !== productIdToDelete);
+                    // Re-render the list to show the change
+                    renderProducts();
+                }
+            }
+        });
+
+        // --- Initial call to display products when the page loads ---
+        renderProducts();
+    });
+    </script>
+
+</body>
+</html>
